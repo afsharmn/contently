@@ -1,0 +1,27 @@
+{
+    "name": "afsharmn/contently",
+    "description": "A simple content/page builder for Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Afsharmn\\Contently\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Afsharmn\\Contently\\ContentlyServiceProvider"
+            ],
+            "aliases": {
+                "Contently": "Afsharmn\\Contently\\Facades\\Contently"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
