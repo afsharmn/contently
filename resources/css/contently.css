@@ -1,0 +1,18 @@
+
+.contently-wrapper {
+    position: fixed;
+    inset: 0;                 /* replaces top/left/right/bottom */
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    align-items: center;      /* vertical center */
+    justify-content: center;  /* horizontal center */
+}
+
+.contently-editor-container {
+    width: 96%;
+    height: 96%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px;
+}

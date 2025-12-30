@@ -2,14 +2,20 @@
 
 namespace Afsharmn\Contently;
 
+use Afsharmn\Contently\Helpers\Json;
+use InvalidArgumentException;
+
 class ContentlyManager
 {
-    public function render(?string $content = null): string
+    public function render(string|null $data = null): string
     {
-        // For now: super simple output.
-        // Later: load blocks from DB, render different versions, etc.
-        $content ??= '<div>Contently is working ✅</div>';
+        if (empty($data))
+            return (new ContentRenderer())->render();
 
-        return $content;
+        if (Json::isJson($data))
+            return (new ContentRenderer($data))->render();
+
+        throw new InvalidArgumentException('Contently::render() received invalid JSON.');
+
     }
 }
