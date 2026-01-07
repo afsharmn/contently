@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\View;
 
 class ContentRenderer
 {
-    private string|null $data;
 
-    public function __construct($data = null)
+    private array $configs;
+    private string $data;
+
+    public function __construct($configs , $data)
     {
+        $this->configs = $configs;
         $this->data = $data;
     }
 

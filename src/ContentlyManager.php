@@ -7,15 +7,31 @@ use InvalidArgumentException;
 
 class ContentlyManager
 {
+    private array $configs = [];
+    private string $data = '';
+
+    public function config(array $configs): self
+    {
+        $this->configs = array_merge($this->configs, $configs);
+        return $this;
+    }
+
+    public function data(string $data): self
+    {
+        if (!Json::isJson($data))
+            throw new InvalidArgumentException('Contently::render() received invalid JSON.');
+
+        $this->data = $data;
+        return $this;
+    }
+
     public function render(string|null $data = null): string
     {
-        if (empty($data))
-            return (new ContentRenderer())->render();
+        $contentRenderer = new ContentRenderer(
+            $this->configs,
+            $this->data
+        );
 
-        if (Json::isJson($data))
-            return (new ContentRenderer($data))->render();
-
-        throw new InvalidArgumentException('Contently::render() received invalid JSON.');
-
+        return $contentRenderer->render();
     }
 }
